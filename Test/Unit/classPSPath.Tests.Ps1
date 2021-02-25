@@ -1,10 +1,14 @@
 BeforeAll {
-	$ModuleName = "Z:\posh\PSPath\Source\Classes\classPSPath.ps1"
+	$ModuleName = Resolve-Path "$PSScriptRoot\..\..\Source\Classes\classPSPath.ps1"
 	$scriptBody = "using module $ModuleName"
 	$script = [ScriptBlock]::Create($scriptBody)
 	. $script
 	# Testparameter set
-	$Path01 = 'C:\Test\Ordner01\Datei01.txt'
+	$Path01 = 'C:\Test\Folder01\File01.txt'
+	$Dir01 = 'Temp\Folder01\'
+	$OutMsg = "Path01:`t{0}`nDir01:`t{1}" -f
+		$Path01, $Dir01
+	Write-Verbose $OutMsg
 }
 
 Describe '[PSPath]-[Constructors]' {
@@ -21,7 +25,7 @@ Describe '[PSPath]-[Constructors]' {
 		# -- Assert
 		{ [PSPath]::New($Path) } | Should -Not -Throw
 	}# end of it block
-	It '[PSPath]-[Constructor]("C:\Test\Ordner01\Datei01.txt") should Be filled' {
+	It '[PSPath]-[Constructor]("$Path01") should Be filled' {
 		# -- Arrange
 		[String]$Path = $Path01
 		# -- Act
@@ -30,10 +34,34 @@ Describe '[PSPath]-[Constructors]' {
 		{$TestPath} | Should -Not -Throw
 		$TestPath.Path | Should -Be $Path01
 		$TestPath.Drive | Should -Be 'C:'
-		$TestPath.Directory | Should -Be 'Test\Ordner01\'
-		$TestPath.FileName | Should -Be 'Datei01'
+		$TestPath.Directory | Should -Be 'Test\Folder01\'
+		$TestPath.FileName | Should -Be 'File01'
 		$TestPath.Extension | Should -Be 'txt'
 		$TestPath.Stream | Should -Be ''
+	}# end of it block
+	It '[PSPath]-Directory-Setter .Directory = Temp\Folder01\ should Be filled' {
+		# -- Arrange
+		[String]$Path = $Path01
+		# -- Act
+		$TestPath1 = [PSPath]::New($Path)
+		$TestPath1.Directory = $Dir01
+		$TestPath2 = $TestPath1
+		$TestPath2.MakePath()
+		# -- Assert
+		{$TestPath1} | Should -Not -Throw
+		{$TestPath2} | Should -Not -Throw
+		$TestPath1.Path | Should -Be 'C:\Temp\Folder01\File01.txt'
+		$TestPath1.Drive | Should -Be 'C:'
+		$TestPath1.Directory | Should -Be $Dir01
+		$TestPath1.FileName | Should -Be 'File01'
+		$TestPath1.Extension | Should -Be 'txt'
+		$TestPath1.Stream | Should -Be ''
+		$TestPath2.Path | Should -Be 'C:\Temp\Folder01\File01.txt'
+		$TestPath2.Drive | Should -Be 'C:'
+		$TestPath2.Directory | Should -Be 'Temp\Folder01\'
+		$TestPath2.FileName | Should -Be 'File01'
+		$TestPath2.Extension | Should -Be 'txt'
+		$TestPath2.Stream | Should -Be ''
 	}# end of it block
 	It '[PSPath]-[Constructor]([String]Drive,[String]Directory,[String]FileName,[String]Extension) should Not Throw' {
 		# -- Arrange
