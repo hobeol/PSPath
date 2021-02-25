@@ -30,4 +30,8 @@ Invoke-Build
 This will package all code into files located in .\bin\PSPath. That folder is now ready to be installed, copy to any path listed in you PSModulePath environment variable and you are good to go!
 
 ---
+<<<<<<< HEAD
 Maintained by Holger Behmann
+=======
+Maintained by Holger Behmann
+>>>>>>> 3a6cd1fcb7e7436ff2a95c8defb64e756d15f89f
