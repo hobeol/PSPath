@@ -4,7 +4,7 @@ Describe 'Core Module Tests' -Tags 'CoreModule', 'Unit' {
         $ModuleSourcePath = Resolve-Path "$ModulePath\Source"
         $ModuleName = (Get-Item $ModulePath).Name
         $ModuleManifestName = 'PSPath.psd1'
-        $ModuleManifestPath = Join-Path -Path $ModuleSourcePath -ChildPath $ModuleManifestName
+        $ModuleManifestPath = Resolve-Path(Join-Path -Path $ModuleSourcePath -ChildPath $ModuleManifestName)
         Write-Host ("Module:`n`tPath:`t{0}`n`tSourcePath:`t{1}`n`tName:`t{2}`n`tManifestName:`t{3}`n`tManifestPath:`t{4}" -f
             $ModulePath,$ModuleSourcePath,$ModuleName,$ModuleManifestName,$ModuleManifestPath)
     }

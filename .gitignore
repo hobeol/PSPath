@@ -2,3 +2,5 @@
 /.vscode
 /.appveyor.yml
 /source/test-pester.txt
+/coverage.xml
+/testResults.xml
