@@ -72,12 +72,14 @@ $T.Path
 
 Output:
 
-`Path                           Drive Directory                 FileName Extension Stream IsPath
+```
+Path                           Drive Directory                 FileName Extension Stream IsPath
                                                                                          Valid
 ----                           ----- ---------                 -------- --------- ------ ------
 C:\Test\Folder02\File04.txt    C:    Test\Folder02\            File04   txt              True
 C:\Test\Test\Text.txt\File04.… C:    Test\Test\Text.txt        File04   txt              True
-C:\Test\Test\Text.txt\File04.txt`
+C:\Test\Test\Text.txt\File04.txt
+```
 
 ---
 
