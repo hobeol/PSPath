@@ -31,11 +31,11 @@ This will package all code into files located in .\bin\PSPath. That folder is no
 Example: Copy-Item .\bin\PSPath\ $PSHOME\Modules\ -Recurse # You may need admin rights!
 
 
-## Why classes
+## Why classes?
 
 Classes provides a lot of features - more than only using functions. Additional work can be done in the constuctors of the class or at the assignment of their members.
 
-## Using the classes PSPath and PSPathEx
+## Using the class PSPath
 
 Because PSPath is a class module you can not use the cmdlet Import-Module. To load the module there is a new statement:
 
@@ -80,6 +80,9 @@ C:\Test\Folder02\File04.txt    C:    Test\Folder02\            File04   txt     
 C:\Test\Test\Text.txt\File04.… C:    Test\Test\Text.txt        File04   txt              True
 C:\Test\Test\Text.txt\File04.txt
 ```
+
+## Using the classes PSPathEx
+
 
 ---
 

@@ -63,6 +63,21 @@ Describe '[PSPath]-[Constructors]' {
 		$TestPath2.Extension | Should -Be 'txt'
 		$TestPath2.Stream | Should -Be ''
 	}# end of it block
+	It '[PSPath]-Constructor with ' {
+		# -- Arrange
+		[String]$Path = "C::"
+		# -- Act
+		$TestPath1 = [PSPath]::New($Path)
+		# -- Assert
+		{$TestPath1} | Should -Not -Throw
+		$TestPath1.Path | Should -Be 'C::'
+		$TestPath1.Drive | Should -Be 'C::'
+		$TestPath1.Directory | Should -Be ''
+		$TestPath1.FileName | Should -Be ''
+		$TestPath1.Extension | Should -Be ''
+		$TestPath1.Stream | Should -Be ''
+		$TestPath1.IsPathValid | Should -BeFalse
+	}# end of it block
 	It '[PSPath]-[Constructor]([String]Drive,[String]Directory,[String]FileName,[String]Extension) should Not Throw' {
 		# -- Arrange
 		[String]$Drive = ''
